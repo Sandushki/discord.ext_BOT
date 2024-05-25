@@ -5,6 +5,9 @@ from discord.ext import commands
 
 from botLogic import *
 
+# {os} ve {random} kütüphanelerini bilgisayara aktarırız.
+import os, random 
+
 # Botumuzun ayrıcalıklarını depolayalım
 intents = discord.Intents.default()
 intents.message_content = True
@@ -33,8 +36,8 @@ async def hello(ctx):
 async def YaziTura(ctx):
     await ctx.send("Paranın, "+yaziTura()+" yüzü yukarıda kaldı.")
 @bot.command()
-async def SifreOlustur(ctx):
-    await ctx.send(f"Sizin için oluşturduğumuz 16 haneli şifre: "+sifreOlusturucu(15))
+async def sifreOlustur(ctx):
+    await ctx.send(f"Sizin için oluşturduğumuz 15 haneli şifre: "+sifreOlusturucu(15))
 @bot.command()
 async def rastgeleEmoji(ctx):
     await ctx.send(emoji())
@@ -42,7 +45,38 @@ async def rastgeleEmoji(ctx):
 async def mention(ctx):
     user = ctx.author.name
 
-    await ctx.send(f"Çağrıldınız @{user}")
+    await ctx.send(f"@{user} çağrıldınız!")
+@bot.command()
+async def clear(ctx):
+    await ctx.send(temizle())
+@bot.command()
+async def bye(ctx):
+    await ctx.send("Gitme, geri gel!")
+@bot.command()
+async def komutlar(ctx):
+    await ctx.send(komutCikar())
 
+@bot.command()
+async def resim(ctx):
+    """"
+        Bilgisayarımızda bulunan herhangi bir dosya ile çalışmak istiyorsak open() fonksiyonu kullanılır.
+        Open kelimesinin Türkçesi, açmak ve açık anlamlarına gelir.
 
-bot.run('TOKEN (Discord bot API)')
+        text() --> Metin, görseller, exe...
+
+        open() fonksiyonunun altında bir sürü argüman kullanırız:
+        open() fonksiyonunun ilk argümanında dosya yolunu belirleriz.
+
+        Metin dosyalarını açmak istediğinizde ek bir argüman olarak bu metin dosyalarının karakter setini belritmeniz gerekir.
+        Bunu yapabilmek için encoding='utf-8' komutunu yazarız.
+
+        'wb' ==> yazmak için metin dışında bir dosya açar.
+        'rb' ==> okunması için metin dışında bir dosya açar.
+"""
+    randomPicture = random.choice(os.listdir('img'))
+
+    with open(f'img\{randomPicture}', 'rb') as f:
+        # METİN OLMAYAN bir dosyayı Discord dosyasına dönüştürür.
+        resim = discord.File(f)
+    # Resmi gönderelim.
+    await ctx.send(file=resim)
