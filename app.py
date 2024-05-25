@@ -80,3 +80,27 @@ async def resim(ctx):
         resim = discord.File(f)
     # Resmi gönderelim.
     await ctx.send(file=resim)
+
+    rarity = ""
+    for i in range(len(randomPicture)):
+        if randomPicture[i] == "e":
+            break
+
+        else:
+            rarity += randomPicture[i]
+    rarity = len(rarity)
+
+    await ctx.send(f"Ayrıca, bu çıkan resmin nadirliği {rarity}'de 1'dir.\n\nŞansa bak!")
+
+
+
+
+
+
+
+
+
+
+
+
+bot.run('TOKEN HERE!')
