@@ -31,7 +31,7 @@ def emoji():
     return(emojimiz)
 
 def komutCikar():
-    komutlar =("Her komut dolar ile başlamak üzere;\n\n    merhaba\n    görüşürüz\n    şifre oluştur\n    yazı tura\n    emoji\n\nolmak üzere,\nbüyük-küçük harflerin yazılımına dikkat edin.")
+    komutlar =("Her komut ünlem ile başlamak üzere;\n\n    hello\n    bye\n    sifreOlustur\n    YaziTura\n    rastgeleEmoji\n    mention\n    resim\n    clear\n\nolmak üzere,\nbüyük-küçük harflerin yazılımına dikkat edin.")
 
     return(komutlar)
 
